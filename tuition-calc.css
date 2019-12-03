@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+#app-panel .app-panel, body {
+  font-family: 'Montserrat'!important;
+  background-color:transparent!important;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  z-index:-10;
+   background-image:url('http://www.vsu.edu/admissions/tuition-calc/images/pattern1b.png')!important;
+}
+
+#app-frame{
+       box-shadow: 0px 0px 11px #7B7066!important;
+    border: none!important; 
+}
+
+h3 {
+    color: #F17E24;
+}
+.app-panel, body{
+font-family: 'Montserrat'!important;
+  background-color:transparent!important;
+  background-image:url('http://www.vsu.edu/admissions/tuition-calc/images/pattern1b.png')!important;
+  background-repeat: repeat;
+  min-height: 500px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  z-index: 1;
+}
+a#btn-menu:focus {
+    color: #F79C57;
+}
+i.fa.fa-bars {
+    display: inline-table;
+    cursor: pointer;
+}
+a:hover {
+    color: #C0DBF6;
+}
+.fa-expand-arrows-alt{
+  margin-left:10px;
+}
+.fa-expand-arrows-alt:hover{
+  margin-left:10px;
+  color:#F17E24;
+}
+ 
+.modal-body{
+    font-family: 'Montserrat', sans-serif !important;
+    margin:0;height:fit-content;width:100%;
+    position: relative;
+    overflow: auto;/* min-height: 100%; */
+}
+tr.check_wrapper.ng-scope {
+    border: 5px solid transparent;
+}
+header{
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: fixed;
+    /* top: 15vh; */
+    z-index: 15;
+}
+td.ng-binding {
+    text-align: center;
+}
+.menu{
+  margin-bottom:5px;
+  z-index: 25;
+}
+label{
+  color:white;
+  font-size: 1em;
+  display: inline-block;
+}
+#appcontain{
+  width:100%;
+  margin:auto;
+  overflow:auto;
+  position: relative;
+  top: 12vh;
+  height: 83vh;
+  z-index: 3;
+  padding-bottom: 50px;
+}
+.navcontain {
+    width: auto;
+    position: relative;
+}
+.mobile-navcontain{
+  /* height: 12vh; */
+  line-height:12vh;
+}
+.nav {
+    position: relative;
+    display: block;
+    height: auto;
+    text-align: center;
+    margin: 0;
+    height: 16vh;
+}
+.mobile-navcontain a{
+  width: auto;
+  display: inline-block;
+  position: relative;
+  height: 10vh;
+  color:white;
+  margin-left:5px;
+  margin-right:5px;
+}
+.nav a {
+    width: 18%;
+    position: relative;
+    display: inline-block;
+    height: 15vh;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 15vh;
+    font-size: 1.3em;
+    text-decoration:none;
+}
+.nav a:hover {
+    text-decoration: none;
+    border-bottom: azure 1px solid;
+}
+.active{
+  text-decoration:none;
+  background-color: #0E5CAB;
+}
+.stitched {
+
+   margin: 1px;
+   background: #043E78;
+   color: #fff;
+   border: 2px dashed #7FADDB;
+   border-radius: 1px;
+   box-shadow: 0 0 0 4px #01305E, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+   font-weight: normal;
+}
+.hide {
+  display: none;
+}
+#btn-menu {
+    font-size: 2.5em;
+    margin: 10px;
+    display: block;
+    z-index: 50;
+}
+#title {
+    color: #E8EEF5;
+    display: block;
+    width: 20%;
+    margin-right: auto;
+    margin-left: auto;
+    position:relative;
+    z-index: 20;
+}
+
+#subtitle {
+    font-size: 0.9em;
+    /* font-weight: 700; */
+    position: relative;
+    top: 4px;
+    color: #FAEFE6;
+    text-align: center;
+}
+table{
+  border:none;
+  color:white;
+  width: 100%
+}
+select{
+  width: 70%;
+  padding: 8px 20px;
+  margin: 8px;
+  margin-left: auto;
+  box-sizing: border-box;
+  background-color:rgba(232, 238, 245, .9);
+  border-radius:5px;
+  font-size:.9em;
+  margin-right: auto;
+  display: block;
+}
+.page{
+  width:50%;
+  text-align:center;
+  display:block;
+  margin:auto;
+  margin-bottom: 3%;
+}
+input[type='number'], input[type='text']{
+  width: 60%;
+  padding: 0px 20px;
+}
+input[type='checkbox']{
+  padding: 12px 20px;
+  background-color:blue;
+}
+#materialfees .ng-binding {
+  /* font-size:1.4em; */
+  color:#E8EEF5;
+  text-align: center;
+}
+#materialfees .ng-scope:hover{
+  background-color:#043E78;
+}
+
+#roomoptions, #tuitiontype, #invoice, #roomselect, #boardoptions {
+  color:#F17E24;
+  text-align:center;
+  font-size:2.5em;
+  margin-bottom: 25px;
+}
+#miscfees{
+    color:#F17E24;
+  text-align:center;
+  font-size:2.5em;
+  margin-bottom: 25px;
+}
+.modal-body table{
+  margin:auto;
+  width:90%;
+  color:#010203;
+}
+.modal-body table tr{
+  font-size:.9em;
+}
+.btn-warning{
+  background-color:#f17e24;
+}
+.btn-primary{
+   background-color: #0E5CAB;
+}
+.modal-header{}
+.selected{
+  background-color:#0A131C;
+}
+
+.auto-scroll-to-top {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: -80px;
+    border-radius: 100%;
+    background-color: #F17E24;
+    color: #fff;
+    font-size: 44px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 55px;
+    -moz-box-shadow: 0 0 5px 0px #010203;
+    -webkit-box-shadow: 0 0 5px 0px #010203;
+    box-shadow: 0 0 5px 0px #010203;
+    transition: 0.3s;
+}
+
+.visible {
+    right: 30px;
+    transition: 0.3s;
+}
+
+
+
+
+
+
+/* The container */
+.check_wrapper {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  /* font-size: 22px; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check_wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  float:right;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.check_wrapper:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check_wrapper input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check_wrapper input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check_wrapper .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.mobile-menu{
+  display:none;
+  width: 100%;
+  float: right;
+  margin-top: 1px;
+  margin-right: 1px;
+  text-align: center;
+  font-size:1.5em;
+}
+@media only screen and (max-width: 880px) {
+    .app-panel{
+    height:100vh;
+    background-image:url('http://www.vsu.edu/admissions/tuition-calc/images/pattern1b.png')!important;
+    background-repeat:repeat;
+    width:100%;
+}
+  .mobile-navcontain{
+    display:block;
+    /* height: 94vh; */
+    line-height:normal;
+    background-color: #000D19;
+    z-index: 17;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  .nav a{
+    font-size:.8em;
+    height: 11vh;
+    line-height: 11vh;
+    width: 100%;
+    margin:auto;
+    z-index: 4;
+  }
+  
+  .navcontain{
+    display:none;
+  }
+    #title{
+    width:100%;
+  }
+  #roomoptions, #tuitiontype, #materialfees, #invoice, #roomselect, #mealplan, #boardoptions, #miscfees, #materialfees{
+    font-size:1em;
+    width:100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    top: 0vh;
+    position: relative;
+    display: grid;
+  }
+  header{
+    top:5vh;
+  }
+  .mobile-menu{
+    font-size:1em;
+  }
+  #instate-invoice{
+    width:100%;
+  }
+  #appcontain {
+    width: 100%;
+    margin: auto;
+    overflow: auto;
+    position: absolute;
+    top: 32vh;
+    z-index: 3;
+}
+}
+
+@media only screen and (min-width: 880px) {
+  .mobile-menu, #btn-menu{
+    display:none;
+  }
+  #title{
+    width:100%;
+  }
+  span.checkbox{
+      margin: 3px;
+  }
+}
