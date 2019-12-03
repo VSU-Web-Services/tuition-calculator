@@ -1,0 +1,533 @@
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <link href="tuition-calc.css" rel="stylesheet" />
+    <div class="app-panel">
+        <div ng-app="app" ng-controller="appCtrl">
+            <div class="row set">
+                <div class="col-sm-1 col-xs-1 menu h-text h-color">
+                    <a   id="btn-menu">
+                        <i class="fa fa-bars" data-toggle="tooltip" title="Calculator Navigation"></i>
+                    </a>
+                </div>
+                <!-- header section -->
+                <div class="mobile-menu btn-toggle nav" id="the-menu">
+                    <div class="mobile-navcontain">
+                        <a class="pageOne active">Tuition Type</a>
+                        <a class="pageThree"ng-show="model.init.campus == 'ON-CAMPUS'">Room and Board</a>
+                        <a class="pageFive">Misc Fees</a>
+                        <a class="pageFour">Materials Fees</a>
+                        <a class="pageTwo"ng-show="model.init.campus && model.init.tuitiontype">Summary</a>
+                    </div>
+                </div>
+                </div>
+                <!-- end menu -->
+                <div class="nav">
+                    <div class="navcontain">
+                        <a class="pageOne active">Tuition Type</a>
+                        <a class="pageThree"ng-show="model.init.campus == 'ON-CAMPUS'">Room and Board</a>
+                        <a class="pageFive">Misc Fees</a>
+                        <a class="pageFour">Materials Fees</a>
+                        <a class="pageTwo"ng-show="model.init.campus && model.init.tuitiontype">Summary</a>
+                    </div>
+                </div>
+                <header>
+                    <h2 id="title">VSU Tuition Calculator
+                    
+                        <i class="fas fa-expand-arrows-alt" data-toggle="tooltip" title="Toggle Fullscreen"></i>
+                    </h2>
+                    <span id="subtitle">&nbsp;{{model.title | uppercase}}</span>
+                </header>
+                <div id="appcontain">
+                    <div id="tuitiontype" class="page">
+                        <h3>TUITION TYPE</h3>
+                        <label for="tuitiontype">Residency</label>
+                        <select ng-model="model.init.tuitiontype">
+                            <option value=""></option>
+                            <option value="IN-STATE">Virginia Resident</option>
+                            <option value="OUT-OF-STATE">Out of State</option>
+                        </select>
+                        <br/>
+                        <br/>
+                        <label for="campus">Campus Housing</label>
+                        <select id="campus" ng-model="model.init.campus" ng-click="campusHousing()">
+                            <option value=""></option>
+                            <option value="ON-CAMPUS">Yes</option>
+                            <option value="OFF-CAMPUS">No</option>
+                        </select>
+                        <br/>
+                        <br/>
+                    </div>
+                    <!-- End of tuitiontype -->
+                    <div id="invoice" class="page hide">
+                        <h3>{{model.init.tuitiontype}} / {{model.init.campus}}</h3>
+                        <div id="instate-invoice" ng-show="model.init.tuitiontype=='IN-STATE'" class="animate-show-hide">
+                            <label for="tuition">Tuition</label>
+                            <span class="" id="tuition">${{model.instate.tuition | number:2}}</span>
+                            <br/>
+                            <label for="techfee">Technology and Infrastructure Fee</label>
+                            <span class="" id="techfee">${{model.instate.techfee | number:2}}</span>
+                            <br/>
+                            <label for="compfee">Comprehensive Fee</label>
+                            <span class="" id="compfee">${{model.instate.compfee | number:2}}</span>
+                            <br/>
+                            <label for="debtfee">Debt Service Fee</label>
+                            <span class="" id="debtfee">${{model.instate.debtfee | number:2}}</span>
+                            <br/>
+                            <label for="statefee">State Capital Outlay Fee</label>
+                            <span class="" id="statefee">${{model.instate.statefee | number:2}}</span>
+                            <br/>
+                            <hr>
+                                <label for="subtotal">Subtotal (
+                                
+                                    <a   ng-click="openModalInstate()">Budget Plan Info.</a>)
+                            
+                                </label>
+                                <span class="" id="subtotal">${{model.instate.subtotal | number:2}}</span>
+                                <br/>
+                                <br/>
+                                <label for="miscfee">Course(s) Miscellaneous Fees</label>
+                                <span class="" id="miscfee">${{model.init.miscfee | number:2}}</span>
+                                <input type="number" size="8" ng-model="model.init.miscfee" class="hide" id="miscfeeinput">
+                                    <br/>
+                                    <label for="materialfee">Course(s) Material Fees</label>
+                                    <span class="" id="materialfee">${{model.init.materialfee | number:2}}</span>
+                                    <input type="number" size="8" ng-model="model.init.materialfee" class="hide" id="materialfeeinput">
+                                        <br/>
+                                        <div class="oncampus" ng-show="model.init.campus == 'ON-CAMPUS'" class="animate-show-hide">
+                                            <label for="room">Room</label>
+                                            <span class="" id="room">${{model.init.room | number:2}}</span>
+                                            <br/>
+                                            <label for="board">Board</label>
+                                            <span class="" id="board">${{model.init.board | number:2}}</span>
+                                            <br/>
+                                        </div>
+                                        <hr>
+                                            <label for="total">Total Charges</label>
+                                            <span class="" id="total">${{model.init.miscfee + model.init.materialfee + model.init.room + model.init.board + model.instate.subtotal | number:2}}</span>
+                                            <br/>
+                                            <br/>
+                                            <span>
+                                                <b>LESS:</b>
+                                            </span>
+                                            <br/>
+                                            <hr>
+                                                <label for="financialaid">(-) Estimated Financial Aid</label> 
+    $
+                                            
+                                                <input type="number" size="8" ng-model="model.init.financialaid" class="" id="financialaid">
+                                                    <br/>
+                                                    <label for="grants">(-) Grants/Scholarships</label> 
+    $
+                                                
+                                                    <input type="number" size="8" ng-model="model.init.grants" class="" id="grants">
+                                                        <br/>
+                                                        <br/>
+                                                        <b>
+                                                            <label for="balance">Estimated Balance Due</label>
+                                                            <span class="" id="balance">${{model.init.miscfee + model.init.materialfee + model.init.room + model.init.board + model.instate.subtotal - model.init.financialaid - model.init.grants | number:2}}</span>
+                                                        </b>
+                                                    </div>
+                                                    <!-- End of instate-invoice -->
+                                                    <div id="outofstate-invoice" ng-show="model.init.tuitiontype=='OUT-OF-STATE'" class="animate-show-hide">
+                                                        <label for="tuition">Tuition</label>
+                                                        <span class="" id="tuition">${{model.outofstate.tuition | number:2}}</span>
+                                                        <br/>
+                                                        <label for="techfee">Technology and Infrastructure Fee</label>
+                                                        <span class="" id="techfee">${{model.outofstate.techfee | number:2}}</span>
+                                                        <br/>
+                                                        <label for="compfee">Comprehensive Fee</label>
+                                                        <span class="" id="compfee">${{model.outofstate.compfee | number:2}}</span>
+                                                        <br/>
+                                                        <label for="debtfee">Debt Service Fee</label>
+                                                        <span class="" id="debtfee">${{model.outofstate.debtfee | number:2}}</span>
+                                                        <br/>
+                                                        <label for="statefee">State Capital Outlay Fee</label>
+                                                        <span class="" id="statefee">${{model.outofstate.statefee | number:2}}</span>
+                                                        <br/>
+                                                        <hr>
+                                                            <label for="subtotal">Subtotal (
+                                                            
+                                                                <a   ng-click="openModalOutofstate()">Budget Plan Info.</a>)
+                                                        
+                                                            </label>
+                                                            <span class="" id="subtotal">${{model.outofstate.subtotal | number:2}}</span>
+                                                            <br/>
+                                                            <br/>
+                                                            <label for="miscfee">Course(s) Miscellaneous Fees</label>
+                                                            <span class="" id="miscfee">${{model.init.miscfee | number:2}}</span>
+                                                            <br/>
+                                                            <label for="materialfee">Course(s) Material Fees</label>
+                                                            <span class="" id="materialfee">${{model.init.materialfee | number:2}}</span>
+                                                            <br/>
+                                                            <div class="oncampus" ng-show="model.init.campus == 'ON-CAMPUS'" class="animate-show-hide">
+                                                                <label for="room">Room</label>
+                                                                <span class="" id="room">${{model.init.room | number:2}}</span>
+                                                                <br/>
+                                                                <label for="board">Board</label>
+                                                                <span class="" id="board">${{model.init.board | number:2}}</span>
+                                                                <br/>
+                                                            </div>
+                                                            <hr>
+                                                                <label for="total">Total Charges</label>
+                                                                <span class="" id="total">${{model.init.miscfee + model.init.materialfee + model.init.room + model.init.board + model.outofstate.subtotal | number:2}}</span>
+                                                                <br/>
+                                                                <br/>
+                                                                <span>
+                                                                    <b>LESS:</b>
+                                                                </span>
+                                                                <br/>
+                                                                <hr>
+                                                                    <label for="financialaid">(-) Estimated Financial Aid</label> 
+    $
+                                                                
+                                                                    <input type="number" size="8" ng-model="model.init.financialaid" class="" id="financialaid">
+                                                                        <br/>
+                                                                        <label for="grants">(-) Grants/Scholarships</label> 
+    $
+                                                                    
+                                                                        <input type="number" size="8" ng-model="model.init.grants" class="" id="grants">
+                                                                            <br/>
+                                                                            <br/>
+                                                                            <b>
+                                                                                <label for="balance">Estimated Balance Due</label>
+                                                                                <span class="" id="balance">${{model.init.miscfee + model.init.materialfee + model.init.room + model.init.board + model.outofstate.subtotal - model.init.financialaid - model.init.grants | number:2}}</span>
+                                                                            </b>
+                                                                        </div>
+                                                                        <!-- End of outofstate-invoice -->
+                                                                        <div class="alert alert-warning" role="alert">
+  Note:This is an estimated Balance Due.  This estimate does not include the following course specific fees: material; lab; chemistry; art, music, water safety.  These fees will calculate and be reflected on the initial billing issued the first week in July.
+</div>
+                                                                    </div>
+                                                                    <!-- End of invoice -->
+                                                                    <div id="oncampus" class="hide page">
+                                                                        <div id="roomoptions">
+                                                                            <h3>ROOM OPTIONS</h3>
+                                                                            <label for="housingtype">Housing Type</label>
+                                                                            <select id="housingtype" ng-model="model.init.housingtype">
+                                                                                <option value="DORMITORY">Campus Dormitory</option>
+                                                                                <option value="APARTMENT">Ettrick Apartment</option>
+                                                                            </select>
+                                                                            <br/>
+                                                                            <br/>
+                                                                            <label for="peoplenumber">Number of People</label>
+                                                                            <select id="peoplenumber" ng-model="model.init.peoplenumber">
+                                                                                <option value="ONE(1)-PERSON">One(1) Person</option>
+                                                                                <option value="TWO(2)-PERSON">Two(2) Person</option>
+                                                                                <option value="FOUR(4)-PERSON">Four(4) Person</option>
+                                                                            </select>
+                                                                            <br/>
+                                                                            <br/>
+                                                                        </div>
+                                                                        <!-- End of roomoptions -->
+                                                                        <div id="roomselect" ng-show="model.init.housingtype && model.init.peoplenumber" class="animate-show-hide">
+                                                                            <h3>{{model.init.housingtype}} / {{model.init.peoplenumber}}</h3>
+                                                                            <div id="singledorm" ng-show="model.init.housingtype=='DORMITORY' && model.init.peoplenumber=='ONE(1)-PERSON'" class="animate-show-hide">
+                                                                                <label for="singledorm">Dorm Location</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in singledorm"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="doubledorm" ng-show="model.init.housingtype=='DORMITORY' && model.init.peoplenumber=='TWO(2)-PERSON'" class="animate-show-hide">
+                                                                                <label for="doubledorm">Dorm Location</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in doubledorm"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="fourdorm" ng-show="model.init.housingtype=='DORMITORY' && model.init.peoplenumber=='FOUR(4)-PERSON'" class="animate-show-hide">
+                                                                                <label for="fourdorm">Dorm Location</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in fourdorm"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="singleapart" ng-show="model.init.housingtype=='APARTMENT' && model.init.peoplenumber=='ONE(1)-PERSON'" class="animate-show-hide">
+                                                                                <span>Sorry, there are no single person apartments.</span>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="sharedapart" ng-show="model.init.housingtype=='APARTMENT' && model.init.peoplenumber=='TWO(2)-PERSON'" class="animate-show-hide">
+                                                                                <label for="sharedapart">(Shared) Lease Type</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in sharedapart"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="privateapart" ng-show="model.init.housingtype=='APARTMENT' && model.init.peoplenumber=='TWO(2)-PERSON'" class="animate-show-hide">
+                                                                                <label for="privateapart">(Private) Lease Type</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in privateapart"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <div id="fourapart" ng-show="model.init.housingtype=='APARTMENT' && model.init.peoplenumber=='FOUR(4)-PERSON'" class="animate-show-hide">
+                                                                                <label for="fourapart">Lease Type</label>
+                                                                                <select ng-model="model.init.room" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in fourapart"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- End of roomselect -->
+                                                                        <div id="boardoptions">
+                                                                            <h3>BOARDING OPTIONS</h3>
+                                                                            <div id="mealplan">
+                                                                                <label for="mealplan">Meal Plan</label>
+                                                                                <select ng-model="model.init.board" ng-options="x.cost as (x.desc + ' $' + (x.cost | number:2)) for x in mealplan"></select>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- End of boardoptions -->
+                                                                    </div>
+                                                                    <div id="materialfees" class="hide page">
+                                                                        <h3>COURSE(S) MATERIAL FEES</h3>
+                                                                        <table>
+                                                                            <tr ng-repeat="x in materialfees | orderBy:'-title':'reverse'" class="check_wrapper">
+                                                                                <td>{{x.course}}</td>
+                                                                                <td>{{x.title}}</td>
+                                                                                <td> ${{x.cost | number:2}}</td>
+                                                                                <td>
+                                                                                    <input type="checkbox" value="{{x.cost}}">
+                                                                                        <span class="checkmark"></span>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <button type="button" id="uncheckMaterialfees" class="btn btn-success">Uncheck All</button>
+                                                                            <br/>
+                                                                            <br/>
+                                                                        </div>
+                                                                        <!-- End of materialfees -->
+                                                                        <div id="miscfees" class="hide page">
+                                                                            <h3>COURSE(S) MISCELLANEOUS FEES</h3>
+                                                                            <table>
+                                                                                <tr ng-repeat="x in miscfees | orderBy:'-title':'reverse'" class="check_wrapper">
+                                                                                    <td>{{x.course}}</td>
+                                                                                    <td>{{x.title}}</td>
+                                                                                    <td> ${{x.cost | number:2}}</td>
+                                                                                    <td>
+                                                                                        <input type="checkbox" value="{{x.cost}}">
+                                                                                            <span class="checkmark"></span>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <button type="button" id="uncheckMiscfees" class="btn btn-success">Uncheck All</button>
+                                                                                <br/>
+                                                                                <br/>
+                                                                            </div>
+                                                                            <!-- End of miscfees -->
+                                                                            
+                                                                                <div class="auto-scroll-to-top">
+                                                                                    <i class="fa fa-angle-up"></i>
+                                                                                </div>
+                                                                            
+                                                                        </div>
+                                                                        <!-- End of appContain -->
+                                                                        <script type="text/ng-template" id="modalinstate.htm">
+  
+  <div class="modal-header">
+    <h3 class="modal-title">Tuition Management Systems</h3>
+    <h4 class="modal-subtitle">1-800-722-4867 <a href="https://vsu.afford.com/" target="_blank">WWW.AFFORD.COM/VSU</a>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      5-Pay Plan Budget  &dollar;{{model.instate.subtotal | number:2}}
+  <table>
+    <tr>
+      <td>Due Dates</td>
+      <td>Amount</td>
+    </tr>
+  <tr>
+      <td>{{model.instate.budget.fivepay.duedates.first}}</td>
+      <td> &dollar;{{model.instate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fivepay.duedates.second}}</td>
+      <td> &dollar;{{model.instate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fivepay.duedates.third}}</td>
+      <td> &dollar;{{model.instate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fivepay.duedates.fourth}}</td>
+      <td> &dollar;{{model.instate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fivepay.duedates.fifth}}</td>
+      <td> &dollar;{{model.instate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+  <tr>
+        <td>Total Paid</td>
+        <td> &dollar;{{model.instate.subtotal | number:2}}</td>
+  </tr>
+  <tr>
+          <td>Fee</td>
+          <td> &dollar;{{model.instate.budget.fivepay.fee | number:2}}</td>
+  </tr>
+  <tr>
+            <td>First Payment</td>
+            <td> &dollar;{{model.instate.budget.fivepay.firstpayment | number:2}}</td>
+  </tr>
+  </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      4-Pay Plan Budget  &dollar;{{model.instate.subtotal | number:2}}
+   <table>
+    <tr>
+      <td>Due Dates</td>
+      <td>Amount</td>
+    </tr>
+  <tr>
+      <td>{{model.instate.budget.fourpay.duedates.first}}</td>
+      <td> &dollar;0.00</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fourpay.duedates.second}}</td>
+      <td> &dollar;{{model.instate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fourpay.duedates.third}}</td>
+      <td> &dollar;{{model.instate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fourpay.duedates.fourth}}</td>
+      <td> &dollar;{{model.instate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.instate.budget.fourpay.duedates.fifth}}</td>
+      <td> &dollar;{{model.instate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+  <tr>
+        <td>Total Paid</td>
+        <td> &dollar;{{model.instate.subtotal | number:2}}</td>
+  </tr>
+  <tr>
+          <td>Fee</td>
+          <td> &dollar;{{model.instate.budget.fourpay.fee | number:2}}</td>
+  </tr>
+  <tr>
+            <td>First Payment</td>
+            <td> &dollar;{{model.instate.budget.fourpay.firstpayment | number:2}}</td>
+  </tr>
+  </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <span>NOTE: Students on payment plan WILL NOT be validated until the Fee and 1st payment are paid in full</span>
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+</script> <!-- End of modalinstate -->
+  
+<script type="text/ng-template" id="modaloutofstate.htm">
+  
+  <div class="modal-header">
+    <h3 class="modal-title">Tuition Management Systems</h3>
+    <h4 class="modal-subtitle">1-800-722-4867 <a href="https://vsu.afford.com/" target="_blank">WWW.AFFORD.COM/VSU</a>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      5-Pay Plan Budget  &dollar;{{model.outofstate.subtotal | number:2}}
+  <table>
+    <tr>
+      <td>Due Dates</td>
+      <td>Amount</td>
+    </tr>
+  <tr>
+      <td>{{model.outofstate.budget.fivepay.duedates.first}}</td>
+      <td> &dollar;{{model.outofstate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fivepay.duedates.second}}</td>
+      <td> &dollar;{{model.outofstate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fivepay.duedates.third}}</td>
+      <td> &dollar;{{model.outofstate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fivepay.duedates.fourth}}</td>
+      <td> &dollar;{{model.outofstate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fivepay.duedates.fifth}}</td>
+      <td> &dollar;{{model.outofstate.budget.fivepay.normalpayment | number:2}}</td>
+    </tr>
+  <tr>
+        <td>Total Paid</td>
+        <td> &dollar;{{model.outofstate.subtotal | number:2}}</td>
+  </tr>
+  <tr>
+          <td>Fee</td>
+          <td> &dollar;{{model.outofstate.budget.fivepay.fee | number:2}}</td>
+  </tr>
+  <tr>
+            <td>First Payment</td>
+            <td> &dollar;{{model.outofstate.budget.fivepay.firstpayment | number:2}}</td>
+  </tr>
+  </table>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      4-Pay Plan Budget  &dollar;{{model.outofstate.subtotal | number:2}}
+   <table>
+    <tr>
+      <td>Due Dates</td>
+      <td>Amount</td>
+    </tr>
+  <tr>
+      <td>{{model.outofstate.budget.fourpay.duedates.first}}</td>
+      <td> &dollar;0.00</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fourpay.duedates.second}}</td>
+      <td> &dollar;{{model.outofstate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fourpay.duedates.third}}</td>
+      <td> &dollar;{{model.outofstate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fourpay.duedates.fourth}}</td>
+      <td> &dollar;{{model.outofstate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+   <tr>
+      <td>{{model.outofstate.budget.fourpay.duedates.fifth}}</td>
+      <td> &dollar;{{model.outofstate.budget.fourpay.normalpayment | number:2}}</td>
+    </tr>
+  <tr>
+        <td>Total Paid</td>
+        <td> &dollar;{{model.outofstate.subtotal | number:2}}</td>
+  </tr>
+  <tr>
+          <td>Fee</td>
+          <td> &dollar;{{model.outofstate.budget.fourpay.fee | number:2}}</td>
+  </tr>
+  <tr>
+            <td>First Payment</td>
+            <td> &dollar;{{model.outofstate.budget.fourpay.firstpayment | number:2}}</td>
+  </tr>
+  </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <span>NOTE: Students on payment plan WILL NOT be validated until the Fee and 1st payment are paid in full</span>
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
+  
+</script><!-- End of modaloutofstate -->
+                                                                                
+    </div>
+    <!-- End of app -->
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js" type="text/javascript"></script>
+<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.4.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+<script src="tuition-calc.js" type="text/javascript"></script>
