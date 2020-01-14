@@ -16,14 +16,35 @@
 ## Users
 - Prostpective, Current, and Transfer Students for VSU
 - Project Owner - VSU Admissions
-- Public who visits VSU website
+- Public users who visits VSU website
 ---
 
 ## Functions
-This web application searches 
+This web application displays the estimated cost of enrolling at VSU by accessing a static data source and displaying results based on what options the user selects.
 
 ---
 
+User first selects residency and campus housing
+
+![tuition](screenshots-readme/tuition-type.JPG)
+
+If user selects On-campus housing then user fills out Room and Board information such as room options, dormitory location, and meal plan.
+
+![room and board](http://g.recordit.co/2OwGPEVLeI.gif)
+
+User proceeds to Misc Fees tab and selects enrolled courses
+
+![misc fees](screenshots-readme/misc-fees.JPG)
+
+User selects enrolled courses within the Materials Fees tab
+
+![materials fees](screenshots-readme/materials-fees.JPG)
+
+User reviews costs within the Summary tab and adds any expected Financial Aid to receive an estimated tuition balance 
+
+![summary](http://g.recordit.co/6ourSiAuHf.gif)
+
+---
 
 ## Installation
 
