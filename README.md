@@ -81,6 +81,10 @@ The tuition calculator app was developed to improve workflow for VSU admissions 
 	- JQuery `#title` click event runs fullscreen or cancel fullscreen function.
 	-function `toggleFull` switches fullscreen off or on.  This is implemented in Vanilla JavaScript for legacy support and cross-platform compatibilty.
 
+![fullscreen](http://g.recordit.co/kJYl2eFhoy.gif)
+
 -`mobile-menu btn-toggle nav` is enabled by default to fit within the constraints of the iframe in the current CMS. 
+
+![mobile nav](http://g.recordit.co/7bpjTNzf9a.gif)
 
 ---
