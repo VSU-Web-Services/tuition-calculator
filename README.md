@@ -44,6 +44,10 @@ User reviews costs within the Summary tab and adds any expected Financial Aid to
 
 ![summary](http://g.recordit.co/6ourSiAuHf.gif)
 
+User may click on the Budget Plan Info link within the Summary tab to see a breakdown of a four or five pay budget plan based on in or out-of-state tuition rates
+
+![payment plan](screenshots-readme/subtotal.JPG)
+
 ---
 
 ## Installation
@@ -58,10 +62,17 @@ To have a local install of the working project you would need to have the follow
 
 ## Overview
 
+The tuition calculator app was developed to improve workflow for VSU admissions when calculating tuition for students.  
 
 ---
 
 ### Tuition Calculator Technical Functions
+
+- costs of tuition is stored within the .js file. Residency and housing are calculated within the DOM using Angular.
+   - Depending on what values are selected an in-state or out-of-state invoice is displayed in the Summary Tab
+   - If housing is on campus, user selects room, dorm and meal plan options.  Those values are added into the Summary Tab through Angular.
+- The misc and materials fees are preliminary calculated with JQuery through a function that goes through checked boxes, tallies and hides value until user goes to the Summary Tab
+- The Summary Tab calculations are completed within the DOM.
 
 
 ---
