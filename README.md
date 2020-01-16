@@ -22,6 +22,8 @@
 ## Functions
 This web application displays the estimated cost of enrolling at VSU by accessing a static data source and displaying results based on what options the user selects.
 
+There is a live version located the VSU admissions website located here: http://www.vsu.edu/admissions/tuition-calc/index.php
+
 ---
 
 User first selects residency and campus housing
