@@ -73,6 +73,9 @@ The tuition calculator app was developed to improve workflow for VSU admissions 
 - The misc and materials fees are preliminary calculated with JQuery through a function that goes through checked boxes, tallies and hides value until user goes to the Summary Tab
 - Depending on what values are selected an in-state or out-of-state invoice is displayed in the Summary Tab.  Both values must be selected for the Summary Tab to show.
 - The Summary Tab calculations are completed within the DOM.
+- Budget Plan modal is imported from AngularUI and is is opened through `ng-click` depending on what residency is selected.
+
+---
 
 - Toggle fullview is handled by JS for cross-platform compatibility
 	- JQuery `#title` click event runs fullscreen or cancel fullscreen function.
