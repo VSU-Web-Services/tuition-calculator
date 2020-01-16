@@ -75,8 +75,6 @@ The tuition calculator app was developed to improve workflow for VSU admissions 
 - The Summary Tab calculations are completed within the DOM.
 - Budget Plan modal is imported from AngularUI and is is opened through `ng-click` depending on what residency is selected.
 
----
-
 - Toggle fullview is handled by JS for cross-platform compatibility
 	- JQuery `#title` click event runs fullscreen or cancel fullscreen function.
 	-function `toggleFull` switches fullscreen off or on.  This is implemented in Vanilla JavaScript for legacy support and cross-platform compatibilty.
