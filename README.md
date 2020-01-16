@@ -75,7 +75,8 @@ The tuition calculator app was developed to improve workflow for VSU admissions 
 - The Summary Tab calculations are completed within the DOM.
 
 - Toggle fullview is handled by JS for cross-platform compatibility
+	- JQuery `#title` click event runs fullscreen or cancel fullscreen function.
 	-function `toggleFull` switches fullscreen off or on.  This is implemented in Vanilla JavaScript for legacy support and cross-platform compatibilty.
 	-`mobile-menu btn-toggle nav` is enabled by default to fit within the constraints of the iframe in the current CMS. 
 
-	---
+---
