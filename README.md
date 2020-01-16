@@ -68,11 +68,14 @@ The tuition calculator app was developed to improve workflow for VSU admissions 
 
 ### Tuition Calculator Technical Functions
 
-- costs of tuition is stored within the .js file. Residency and housing are calculated within the DOM using Angular.
-   - Depending on what values are selected an in-state or out-of-state invoice is displayed in the Summary Tab
+- values of tuition is stored within the .js file. Residency and housing are calculated within the DOM using Angular.  
+   - Depending on what values are selected an in-state or out-of-state invoice is displayed in the Summary Tab.  Both values must be selected for the Summary Tab to show.
    - If housing is on campus, user selects room, dorm and meal plan options.  Those values are added into the Summary Tab through Angular.
 - The misc and materials fees are preliminary calculated with JQuery through a function that goes through checked boxes, tallies and hides value until user goes to the Summary Tab
 - The Summary Tab calculations are completed within the DOM.
 
+- Toggle fullview is handled by JS for cross-platform compatibility
+	-function `toggleFull` switches fullscreen off or on.  This is implemented in Vanilla JavaScript for legacy support and cross-platform compatibilty.
+	-`mobile-menu btn-toggle nav` is enabled by default to fit within the constraints of the iframe in the current CMS. 
 
----
+	---
